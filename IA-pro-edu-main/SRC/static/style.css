@@ -43,8 +43,23 @@ body {
     font-weight: 500;
 }
 
-.navbar-right a:hover {
+/* 🔹 Botones de la navbar (Login / Register) con aspecto de enlace */
+.navbar-right button {
+    margin-left: 15px;
+    padding: 4px 8px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.navbar-right a:hover,
+.navbar-right button:hover {
     opacity: 0.7;
+    background: none;
 }
 
 
@@ -77,7 +92,7 @@ body {
 
 /* 🔹 BOTÓN HISTORIAL */
 .btn-historial {
-    background: rgba(255,255,255,0.15);
+    background: #4a4a68;
     border: none;
     padding: 8px 14px;
     border-radius: 12px;
@@ -86,7 +101,7 @@ body {
 }
 
 .btn-historial:hover {
-    background: rgba(255,255,255,0.25);
+    background: #5d5d80;
 }
 
 
@@ -121,7 +136,7 @@ button {
     padding: 18px;
     border: none;
     border-radius: 15px;
-    background: rgba(255,255,255,0.15);
+    background: #3d3d55;
     color: white;
     font-size: 18px;
     cursor: pointer;
@@ -130,22 +145,34 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    background: rgba(255,255,255,0.25);
+    background: #4d4d6b;
 }
 
 /* 🔹 Botones operadores (+ - ÷ ×) */
 .op {
-    background: #8a7cfb;
+    background: #5b4bdb;
+}
+
+.op:hover {
+    background: #6d5cf0;
 }
 
 /* 🔹 Botón igual */
 .igual {
-    background: #6c63ff;
+    background: #4f46e5;
+}
+
+.igual:hover {
+    background: #635bff;
 }
 
 /* 🔹 Botón limpiar */
 .clear {
-    background: #ff4d6d;
+    background: #c9184a;
+}
+
+.clear:hover {
+    background: #e0264f;
 }
 
 
@@ -198,7 +225,7 @@ button:hover {
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: #6c63ff;
+    background: #4f46e5;
     color: white;
     cursor: pointer;
 }
@@ -246,8 +273,12 @@ button:hover {
     margin-top: 20px;
     padding: 10px;
     border-radius: 10px;
-    background: #ff4d6d;
+    background: #c9184a;
     border: none;
     color: white;
     width: 100%;
+}
+
+.btn-borrar:hover {
+    background: #e0264f;
 }

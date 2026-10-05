@@ -7,6 +7,9 @@ from app.calculator import calcular
 
 main = Blueprint("main", __name__)
 
+# 🔹 Endpoint de la calculadora: destino comun de register, login, logout y borrar
+INICIO_ENDPOINT = "main.inicio"
+
 
 # ==========================================================
 # 🔐 REGISTER
@@ -26,7 +29,7 @@ def register():
 
     if user_exists:
         flash("Usuario o email ya existen")
-        return redirect(url_for("main.inicio"))
+        return redirect(url_for(INICIO_ENDPOINT))
 
     # 🔹 Encriptar contraseña
     password_hash = generate_password_hash(password)
@@ -44,7 +47,7 @@ def register():
     # 🔹 Crear sesión automáticamente tras registro
     session["user_id"] = nuevo_usuario.id
 
-    return redirect(url_for("main.inicio"))
+    return redirect(url_for(INICIO_ENDPOINT))
 
 
 # ==========================================================
@@ -62,17 +65,17 @@ def login():
 
     if not usuario:
         flash("Usuario no encontrado")
-        return redirect(url_for("main.inicio"))
+        return redirect(url_for(INICIO_ENDPOINT))
 
     # 🔹 Verificar contraseña hasheada
     if not check_password_hash(usuario.password_hash, password):
         flash("Contraseña incorrecta")
-        return redirect(url_for("main.inicio"))
+        return redirect(url_for(INICIO_ENDPOINT))
 
     # 🔹 Guardar ID en sesión
     session["user_id"] = usuario.id
 
-    return redirect(url_for("main.inicio"))
+    return redirect(url_for(INICIO_ENDPOINT))
 
 
 # ==========================================================
@@ -154,12 +157,12 @@ def inicio():
 # 🔓 LOGOUT
 # Elimina sesión y vuelve a la calculadora
 # ==========================================================
-@main.route("/logout")
+@main.route("/logout", methods=["GET", "POST"])
 def logout():
 
     session.pop("user_id", None)
 
-    return redirect(url_for("main.inicio"))
+    return redirect(url_for(INICIO_ENDPOINT))
 
 
 # ==========================================================
@@ -170,7 +173,7 @@ def logout():
 def borrar_historial():
 
     if "user_id" not in session:
-        return redirect(url_for("main.inicio"))
+        return redirect(url_for(INICIO_ENDPOINT))
 
     Operacion.query.filter_by(
         usuario_id=session["user_id"]
@@ -178,4 +181,4 @@ def borrar_historial():
 
     db.session.commit()
 
-    return redirect(url_for("main.inicio"))
+    return redirect(url_for(INICIO_ENDPOINT))
