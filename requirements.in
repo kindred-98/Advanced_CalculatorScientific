@@ -1,0 +1,6 @@
+# Dependencias directas del proyecto.
+# El lock completo con hashes se genera en requirements.txt con:
+#   pip-compile --generate-hashes --output-file=requirements.txt requirements.in
+Flask==3.1.3
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.2
