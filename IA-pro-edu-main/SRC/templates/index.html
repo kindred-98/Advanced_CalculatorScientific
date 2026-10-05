@@ -65,6 +65,7 @@
          📤 FORM OCULTO (Envía datos al backend)
     ======================================================= -->
     <form method="POST" id="calc-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="hidden" name="num1" id="num1">
         <input type="hidden" name="num2" id="num2">
         <input type="hidden" name="operacion" id="operacion">
@@ -140,6 +141,7 @@
 
     <!-- Botón borrar historial -->
     <form method="POST" action="{{ url_for('main.borrar_historial') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <button type="submit" class="btn-borrar">Borrar historial</button>
     </form>
 
@@ -155,8 +157,11 @@
     <div class="modal-content">
         <h3>Iniciar sesión</h3>
         <form method="POST" action="{{ url_for('main.login') }}">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label class="sr-only" for="login-email">Email</label>
+            <input type="email" id="login-email" name="email" placeholder="Email" required>
+            <label class="sr-only" for="login-password">Contraseña</label>
+            <input type="password" id="login-password" name="password" placeholder="Contraseña" required>
             <button type="submit">Entrar</button>
         </form>
         <button onclick="cerrarModal()">Cerrar</button>
@@ -168,9 +173,13 @@
     <div class="modal-content">
         <h3>Crear cuenta</h3>
         <form method="POST" action="{{ url_for('main.register') }}">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label class="sr-only" for="register-username">Username</label>
+            <input type="text" id="register-username" name="username" placeholder="Username" required>
+            <label class="sr-only" for="register-email">Email</label>
+            <input type="email" id="register-email" name="email" placeholder="Email" required>
+            <label class="sr-only" for="register-password">Contraseña</label>
+            <input type="password" id="register-password" name="password" placeholder="Contraseña" required>
             <button type="submit">Registrarse</button>
         </form>
         <button onclick="cerrarModal()">Cerrar</button>
